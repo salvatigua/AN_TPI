@@ -1,13 +1,13 @@
 # RepoAN
 Acá quedará explicada la función de cada archivo.
 
-Archivos del ejercicio 1.
+## Archivos del ejercicio 1
 1. _EJ1_MDF.m_ : resuelve el ej1 con MDF.
 2. _EJ1_MEF.m_ : resuelve el ej2 con MEF.
 3. _EJ1_ERROR_MDF.m_ : calcula el error de 1.
 4. _EJ1_ERROR_MEF.m_ : calcula el error de 2.
   
-Archivos del ejercicio 2:
+## Archivos del ejercicio 2
 5. _EJ2_SA.m_ : resuelve el ej2 analíticamente.
 6. _EJ2_MDF_V1.m_ : resuleve el ej2 con MDF versión original.
 7. _EJ2_MDF_V2.m_ : resuelve el ej2 con MDF versión nueva (más simple).
@@ -17,7 +17,7 @@ Archivos del ejercicio 2:
 11. - _EJ2_ERROR_MEF.m_ : calcula el error de 8/9
 12. - _pruebaMEF.m_ : resuelve el último punto (cambiará de nombre).
 
-Archivos de uso general:
+## Archivos de uso general
 13. _generarNodos.m_ : genera una matriz que tiene como columnas las coordenadas (x,y) de cada nodo (fila).
 14. _generarTriangulacion.m_ : genera una matriz que tiene los nodos que componen cada triángulo (n1, n2, n3).
 15. _generarTriangulacionCompleta.m_ : igual que 14 pero agrega una 4ta columna con el jacobiano del triángulo en cuestión. Usa 13.
