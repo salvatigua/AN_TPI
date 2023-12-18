@@ -14,8 +14,8 @@ Acá quedará explicada la función de cada archivo.
 8. _EJ2_MEF_V1.m_ : resuelve el ej2 con MEF (método complicado).
 9.  _EJ2_MEF_V2.m_ : resuelve el ej2 con MEF (con un triángulo de referencia).
 10. _EJ2_ERROR_MDF.m_ : calcula el errror de 6/7.
-11. - _EJ2_ERROR_MEF.m_ : calcula el error de 8/9
-12. - _pruebaMEF.m_ : resuelve el último punto (cambiará de nombre).
+11. _EJ2_ERROR_MEF.m_ : calcula el error de 8/9
+12. _pruebaMEF.m_ : resuelve el último punto (cambiará de nombre).
 
 ## Archivos de uso general
 13. _generarNodos.m_ : genera una matriz que tiene como columnas las coordenadas (x,y) de cada nodo (fila).
