@@ -28,7 +28,7 @@ Acá quedará explicada la función de cada archivo.
 20. _triangulacion.m_ : similar a 14, más viejo.
 21. _graficarSolucionPRUEBA.m_ : programa para graficar lo de 12 (cambiará de nombre).
 
-Archivos en carpeta GMSH
+## Archivos en carpeta GMSH
 22. _leer_GMSH.py_ : contiene funciones útiles para 23.
 23. _leerMalla.py_ : lee malla de 'malla.msh' y guarda su información en un archivo legible por 17.
 24. _malla.msh_ : generada por 26.
