@@ -132,19 +132,17 @@ for i = nodosParedLateralDer
 end
 
 % Aplicar condición de borde en la pared superior (V0 = 1)
-nodoParedSuperior = find(N(:,2) == long);
-A(nodoParedSuperior, :) = 0;
-A(nodoParedSuperior, nodoParedSuperior) = 1;
-b(nodoParedSuperior) = 1;
+nodosParedSuperior = find(N(:,2) == long);
+for i = nodosParedSuperior
+    A(i, :) = 0;
+    A(i, i) = 1;
+    b(i) = 1;
+end
 
 % -------------------------------------------------------------------
 
 % SOLUCIÓN
  v = A\b
-
  graficarSolucionPRUEBA(N, T, v);
-
- %Presentacion del resultado VA A HABER QUE HACERLO DE OTRA FORMA
- % graficarMalla(x_aux,y_aux,v');
 
 endfunction;

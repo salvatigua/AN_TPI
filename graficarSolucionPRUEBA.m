@@ -4,7 +4,7 @@ function graficarSolucionPRUEBA(N, T, v)
     % v: solución
 
     % Graficar la solución usando trisurf
-    figure;
+    figure(8);
     trisurf(T, N(:, 1), N(:, 2), v, 'EdgeColor', 'k', 'FaceColor', 'interp');
     colorbar; % Agregar una barra de colores para representar los valores de v
     title('Solución V en el dominio');

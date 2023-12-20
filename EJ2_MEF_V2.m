@@ -11,10 +11,13 @@
 %  m: cantidad de nodos sobre x
 %  n: cantidad de nodos sobre y
 %  ci: i-ésima condición
+%  tr: booleano para graficar triangulación
+%  dat: booleano para guardar datos
+%  gr: booleano para graficar la solución
 %
 % ---------------------------------------------
 
-function v = EJ2_MEF_V2(x=1,y=1,m=11,n=11, c1=0,c2=1,c3=0,c4=0);
+function v = EJ2_MEF_V2(x=1,y=1,m=11,n=11, c1=0,c2=1,c3=0,c4=0, tr=1, dat=0, gr=1);
 
  mn = m*n; %Cantidad total de nodos
 
@@ -31,70 +34,75 @@ function v = EJ2_MEF_V2(x=1,y=1,m=11,n=11, c1=0,c2=1,c3=0,c4=0);
 
 % --------- GUARDAR DATOS EN ARCHIVO DE TEXTO ------------
 
-outputFileName = 'resultados.txt'; % Nombre del archivo de salida
-fid = fopen(outputFileName, 'w'); % Abre el archivo para escritura
+if dat==1
+  outputFileName = 'resultados.txt'; % Nombre del archivo de salida
+  fid = fopen(outputFileName, 'w'); % Abre el archivo para escritura
 
-% Escribe los datos de los nodos en el archivo
-fprintf(fid, 'Nodos:\n');
-fprintf(fid, 'x\ty\tfrontera\n');
-for i = 1:size(N, 1)
-    fprintf(fid, '%f\t%f\t%d\n', N(i, 1), N(i, 2), N(i, 3));
+  % Escribe los datos de los nodos en el archivo
+  fprintf(fid, 'Nodos:\n');
+  fprintf(fid, 'x\ty\tfrontera\n');
+  for i = 1:size(N, 1)
+      fprintf(fid, '%f\t%f\t%d\n', N(i, 1), N(i, 2), N(i, 3));
+  end
+
+  % Escribe los datos de la triangulación en el archivo
+  fprintf(fid, 'Triangulación:\n');
+  fprintf(fid, 'N° Elem\tN1\tN2\tN3\n');
+  %fprintf(fid, 'N° Elem\tN1\tN2\tN3\tJ\n');
+  for i = 1:size(T, 1)
+      %fprintf(fid, '%d\t%d\t%d\t%d\n', i, T(i, 1), T(i, 2), T(i, 3));
+      fprintf(fid, '%d\t%d\t%d\t%d\n', i, T(i, 1), T(i, 2), T(i, 3), T(i,4));
+  end
+
+  fclose(fid); % Cierra el archivo
 end
 
-% Escribe los datos de la triangulación en el archivo
-fprintf(fid, 'Triangulación:\n');
-fprintf(fid, 'N° Elem\tN1\tN2\tN3\n');
-%fprintf(fid, 'N° Elem\tN1\tN2\tN3\tJ\n');
-for i = 1:size(T, 1)
-    %fprintf(fid, '%d\t%d\t%d\t%d\n', i, T(i, 1), T(i, 2), T(i, 3));
-    fprintf(fid, '%d\t%d\t%d\t%d\n', i, T(i, 1), T(i, 2), T(i, 3), T(i,4));
+% --------------- GRAFICAR MALLA TRIANGULAR --------------
+
+if tr==1
+  % Grafica la malla
+  figure(5);
+  scatter(N(:, 1), N(:, 2), 'filled'); % Dibuja los nodos como puntos
+
+  hold on; % Mantén la figura actual para agregar la triangulación
+
+  % Dibuja las líneas de la triangulación
+  for i = 1:size(T, 1)
+      x_coords = N(T(i, 1:3), 1);
+      %x_coords = N(T(i, :), 1);
+      y_coords = N(T(i, 1:3), 2);
+      %y_coords = N(T(i, :), 2);
+      x_coords = [x_coords; x_coords(1)]; % Agrega el primer nodo al final para cerrar el triángulo
+      y_coords = [y_coords; y_coords(1)];
+      plot(x_coords, y_coords, 'b'); % Dibuja la línea que conecta los nodos del triángulo
+  end
+
+  hold off; % Termina de agregar elementos a la figura
+
+  % Configura el aspecto de la gráfica
+  xlabel('Eje X');
+  ylabel('Eje Y');
+  title('Malla y Triangulación');
+
+  % Coloca la leyenda debajo del gráfico
+  legend('Nodos', 'Triangulación', 'Location', 'southoutside');
+
+  % Ajusta los límites de la gráfica (si es necesario)
+  % axis([xmin, xmax, ymin, ymax]);
+
+  % Ajusta la resolución
+  dpi = 500;
+
+  % Crea una estructura de opciones para establecer la resolución
+  print_options = sprintf('-r%d', dpi);
+
+  % Guarda figura
+  outputFileName = 'malla_y_triangulacion.png'; % Nombre del archivo de salida
+  print(gcf, outputFileName, '-dpng', print_options);
 end
 
-fclose(fid); % Cierra el archivo
 
-% --------------- GRAFICAR MALLA TRIANGULAR -------------
-
-% Grafica la malla
-figure(5);
-scatter(N(:, 1), N(:, 2), 'filled'); % Dibuja los nodos como puntos
-
-hold on; % Mantén la figura actual para agregar la triangulación
-
-% Dibuja las líneas de la triangulación
-for i = 1:size(T, 1)
-    x_coords = N(T(i, 1:3), 1);
-    %x_coords = N(T(i, :), 1);
-    y_coords = N(T(i, 1:3), 2);
-    %y_coords = N(T(i, :), 2);
-    x_coords = [x_coords; x_coords(1)]; % Agrega el primer nodo al final para cerrar el triángulo
-    y_coords = [y_coords; y_coords(1)];
-    plot(x_coords, y_coords, 'b'); % Dibuja la línea que conecta los nodos del triángulo
-end
-
-hold off; % Termina de agregar elementos a la figura
-
-% Configura el aspecto de la gráfica
-xlabel('Eje X');
-ylabel('Eje Y');
-title('Malla y Triangulación');
-
-% Coloca la leyenda debajo del gráfico
-legend('Nodos', 'Triangulación', 'Location', 'southoutside');
-
-% Ajusta los límites de la gráfica (si es necesario)
-% axis([xmin, xmax, ymin, ymax]);
-
-% Ajusta la resolución
-dpi = 500;
-
-% Crea una estructura de opciones para establecer la resolución
-print_options = sprintf('-r%d', dpi);
-
-% Guarda figura
-outputFileName = 'malla_y_triangulacion.png'; % Nombre del archivo de salida
-print(gcf, outputFileName, '-dpng', print_options);
-
-% ------------------------------------------------
+% ------------- RESOLUCIÓN INTERIOR ----------------------
 
  for j=1:length(T)
 
@@ -128,6 +136,8 @@ print(gcf, outputFileName, '-dpng', print_options);
 
 endfor;
 
+% ------------- CONDICIONES DE BORDE ---------------------
+
 for i=1:m % puntos de frontera inferior y superior
      j=1; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c1;
      j=n; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c2;
@@ -138,10 +148,13 @@ for i=1:m % puntos de frontera inferior y superior
      i=m; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c4;
  endfor;
 
- v = A\b;
 
- %Presentacion del resultado
- graficarMalla(x_aux,y_aux,v');
+% ------------- SOLUCIÓN Y GRÁFICO  ----------------------
+
+ v = A\b;
+ if gr==1
+   graficarMalla(x_aux,y_aux,v'); %Presentacion del resultado
+ endif
 
 endfunction;
 
