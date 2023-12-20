@@ -17,7 +17,7 @@
 %
 % ---------------------------------------------
 
-function v = EJ2_MEF_V2(x=1,y=1,m=11,n=11, c1=0,c2=1,c3=0,c4=0, tr=1, dat=0, gr=1);
+function v = EJ2_MEF_V2(x=1,y=1,m=4,n=4, c1=0,c2=1,c3=0,c4=0, tr=1, dat=1, gr=1);
 
  mn = m*n; %Cantidad total de nodos
 
@@ -28,8 +28,8 @@ function v = EJ2_MEF_V2(x=1,y=1,m=11,n=11, c1=0,c2=1,c3=0,c4=0, tr=1, dat=0, gr=
 
  x_aux = x;          y_aux = y;
 
- %T = generarTriangulacion(m,n);
  T = generarTriangulacionCompleta(m,n);
+ %T = triangulacion(m,n);
  N = generarNodos(n,m,1);
 
 % --------- GUARDAR DATOS EN ARCHIVO DE TEXTO ------------
@@ -132,25 +132,30 @@ end
          A_elem = [a11 a12 a13; a21 a22 a23; a31 a32 a33];
 
      % Ensamblaje en matriz global
-     A([T(j,1) T(j,2) T(j,3)],[T(j,1) T(j,2) T(j,3)]) = A([T(j,1), T(j,2) T(j,3)],[T(j,1) T(j,2) T(j,3)]) + A_elem;
+     A([T(j,1) T(j,2) T(j,3)],[T(j,1) T(j,2) T(j,3)]) =A([T(j,1), T(j,2) T(j,3)],[T(j,1) T(j,2) T(j,3)]) + A_elem;
+
+
 
 endfor;
 
 % ------------- CONDICIONES DE BORDE ---------------------
 
 for i=1:m % puntos de frontera inferior y superior
-     j=1; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c1;
-     j=n; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c2;
+     j=1; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c1;
+     j=n; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c2; % 1
  endfor;
 
  for j=2:n-1 % puntos de frontera iquierda y derecha
-     i=1; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c3;
-     i=m; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c4;
+     i=1; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c3;
+     i=m; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c4;
  endfor;
 
 
 % ------------- SOLUCIÓN Y GRÁFICO  ----------------------
 
+ A
+ b
+ max(A-transpose(A))
  v = A\b;
  if gr==1
    graficarMalla(x_aux,y_aux,v'); %Presentacion del resultado

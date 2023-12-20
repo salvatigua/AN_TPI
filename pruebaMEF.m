@@ -10,7 +10,7 @@
 %
 % ---------------------------------------------
 
-function v = pruebaMEF(graficar=0);
+function v = pruebaMEF(graficar=1);
 
  [N, T] = obtenerDatos('datos.txt'); % Obtenemos triangulación y nodos
 

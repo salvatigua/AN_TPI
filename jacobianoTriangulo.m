@@ -19,7 +19,6 @@ function j=jacobianoTriangulo(p1,p2,p3)
   areaT = (1/2)*determinante;
 
   % jacobiano = area T / area T*
-  j = areaT / areaTR;
-  %j = areaTR / areaT; % CREO QUE ESTÁ MAL
+  j = abs(areaT / areaTR);
 
   endfunction

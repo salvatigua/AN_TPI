@@ -16,7 +16,7 @@
 %
 % ---------------------------------------------
 
-function v = EJ2_MEF(x=1,y=1,m=10,n=10, c1=0,c2=1,c3=0,c4=0, tr=0, dat=0, gr=0);
+function v = EJ2_MEF(x=1,y=1,m=10,n=10, c1=0,c2=1,c3=0,c4=0, tr=1, dat=0, gr=1);
 
  mn = m*n; %Cantidad total de nodos
 
@@ -146,6 +146,7 @@ for i=1:m % puntos de frontera inferior y superior
  endfor;
 
  v = A\b;
+ A
 
  if gr==1
   graficarMalla(x_aux,y_aux,v'); %Presentacion del resultado
