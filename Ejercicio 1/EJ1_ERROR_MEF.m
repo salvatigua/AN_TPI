@@ -5,26 +5,28 @@
 %
 % -------------- PARAMETROS ---------------
 %
-%  L = longitud
-%  diam = diámetro de varilla
-%  n = cantidad de nodos sobre un eje
-%  ta = temperatura ambiente
-%  t0 = temperatura extremo
-%  c1 = condición frontera inferior
-%  k y hp (condiciones físicas)
-%  n = cantidad de nodos
+%  Mismos parámetros que EJ1_MEF
 %
 % -----------------------------------------
 
-function u = EJ1_ERROR_MEF (L, diam, ta, t0, hp, k, n)
+function u = EJ1_ERROR_MEF (L_mm = 100, diam_mm = 8, ta = 20, t0 = 50, hp = 200, k = 164, n = 40);
 
-   h=L/n;
+   % Conversión de unidades
+   L = L_mm / 1000;         % longitud en metros
+   diam = diam_mm / 1000;   % diámetro en mmetros
+
+   % Discretización de dominio
+   h = L/n;     % longitud de cada intervalo
+   x=0:h:L;     % dominio
+
+   % Radio, área y perímetro
    radio = diam/2;
-   p= 2*pi*radio;
    area = 2*pi*radio*L + 2*pi*radio*radio;
-   x=0:h:L;
-   a= (hp*p)/(k*area);
-   u0=t0-ta;
+   p= 2*pi*radio;
+
+   % Constantes
+   a= (hp*p)/(k*area); % Constante a
+   u0=t0-ta;           % Condición de borde
 
    % Definición de la función analítica f(x)
    function y = f(x)
@@ -33,7 +35,7 @@ function u = EJ1_ERROR_MEF (L, diam, ta, t0, hp, k, n)
 
    % Cálculo de los valores de f y u en los puntos X
    f_values = arrayfun(@f, x)
-   u_values = EJ1_MEF(L, diam, ta, t0, hp, k, n)
+   u_values = EJ1_MEF(L_mm = 100, diam_mm = 8, ta = 20, t0 = 50, hp = 200, k = 164, n = 40);
 
    % Cálculo del error
    error = u_values' - f_values
