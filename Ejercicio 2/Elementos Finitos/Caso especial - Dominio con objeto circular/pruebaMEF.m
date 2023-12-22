@@ -10,7 +10,7 @@
 %
 % ---------------------------------------------
 
-function v = pruebaMEF(graficar=1);
+function v = pruebaMEF(graficar=0);
 
  [N, T] = obtenerDatos('datos.txt'); % Obtenemos triangulación y nodos
 
@@ -18,60 +18,11 @@ function v = pruebaMEF(graficar=1);
  A = zeros(mn,mn);   b = zeros(mn,1);
  long = 1;
 
- %m=10;
- %n=m;
-
- % VEREMOS DESPUÉS CÓMO DEFINIR DOMINIO
- %h = largo/(m-1);        k = largo/(n-1);
- %x = [0:h:largo];        y = [0:k:largo];
- %x_aux = x;          y_aux = y;
-
-%------------- GRAFICAR TRIANGULACIÓN -------------
 if graficar==1
-  % Grafica la malla
-  figure(5);
-  scatter(N(:, 1), N(:, 2), 'filled'); % Dibuja los nodos como puntos
-
-  hold on; % Mantén la figura actual para agregar la triangulación
-
-  % Dibuja las líneas de la triangulación
-  for i = 1:size(T, 1)
-      x_coords = N(T(i, 1:3), 1);
-      %x_coords = N(T(i, :), 1);
-      y_coords = N(T(i, 1:3), 2);
-      %y_coords = N(T(i, :), 2);
-      x_coords = [x_coords; x_coords(1)]; % Agrega el primer nodo al final para cerrar el triángulo
-      y_coords = [y_coords; y_coords(1)];
-      plot(x_coords, y_coords, 'b'); % Dibuja la línea que conecta los nodos del triángulo
-  end
-
-  hold off; % Termina de agregar elementos a la figura
-
-  % Configura el aspecto de la gráfica
-  xlabel('Eje X');
-  ylabel('Eje Y');
-  title('Malla y Triangulación');
-
-  % Coloca la leyenda debajo del gráfico
-  legend('Nodos', 'Triangulación', 'Location', 'southoutside');
-
-  % Ajusta los límites de la gráfica (si es necesario)
-  % axis([xmin, xmax, ymin, ymax]);
-
-  % Ajusta la resolución
-  dpi = 500;
-
-  % Crea una estructura de opciones para establecer la resolución
-  print_options = sprintf('-r%d', dpi);
-
-  % Guarda figura
-  outputFileName = 'C:\Users\salva\PRUEBAS MEF\malla_y_triangulacion.png'; % Nombre del archivo de salida
-  print(gcf, outputFileName, '-dpng', print_options);
+  mostrar_triangulacion(N, T, 'malla_y_triangulacion.png')
 end
 
-% -------------------------------------------------
-
-% RESOLUCIÓN INTERIOR
+% ------------------ RESOLUCIÓN INTERIOR --------------------------
  for j=1:length(T)
 
      % Obtenemos las coordenadas de los nodos (Ej: x=[0,0.1,0] y=[0,0,0.1])
