@@ -1,3 +1,14 @@
+% ---------------- ObtenerDatos -----------------
+%
+%        Programa que lee un archivo y
+%      guarda los datos en matrices N y T
+%
+% ---------------- PARAMETROS -----------------
+%
+%  El único parámetro es el nombre del archivo
+%
+% ---------------------------------------------
+
 function [N, T] = obtenerDatos(nombreArchivo)
     % Abre el archivo para lectura
     fid = fopen(nombreArchivo, 'r');

@@ -1,7 +1,8 @@
 % ------------------ NODOS ------------------
 %
 %     Programa para guardar valores x
-%  e y de una malla rectangular en nodos
+%  e y de una malla rectangular en nodo
+%     usado por la solución analítica
 %
 % --------------- PARAMETROS ----------------
 %
@@ -14,7 +15,7 @@
 %
 % -------------------------------------------
 
-function N = nodos(x,y,n,m);
+function N = nodos_SA(x,y,n,m);
 
    M = n*m;           # Cant total de nodos
    N = zeros(M,3);    # Matriz
@@ -31,6 +32,5 @@ function N = nodos(x,y,n,m);
        N(j:j+n-1,2) = y(k);
        ++k;
    endfor;
-
 
 endfunction;

@@ -1,6 +1,7 @@
 % ----------- GRÁFICAR MALLA -----------
 %
-%     Programa para graficar mallas
+%    Programa para graficar mallas
+%  para diferencias finitas del Ej 2
 %
 % ------------- PARAMETROS -------------
 %
@@ -10,7 +11,7 @@
 %
 % --------------------------------------
 
-function graficarMalla(x,y,z);
+function graficarMalla_MDF(x,y,z);
 
      n = length(x);
      m = length(y);

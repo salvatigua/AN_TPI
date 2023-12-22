@@ -11,10 +11,11 @@
 %  c2 = condición frontera superior
 %  c3 = condición frontera izquierda
 %  c4 = condición frontera derecha
+%  gr: booleano para graficar la solución
 %
 % ------------------------------------------
 
-function V = EJ2_MDF(L=1,n=25,c1=0,c2=1,c3=0,c4=0);
+function V = EJ2_MDF(L=1,n=25,c1=0,c2=1,c3=0,c4=0, gr=1);
 
    tn = n*n;    %Cantidad total de nodos
 
@@ -83,6 +84,8 @@ function V = EJ2_MDF(L=1,n=25,c1=0,c2=1,c3=0,c4=0);
 
    V=A\b;
 
-   graficarMalla(x,y,V');
+   if gr==1
+     graficarMalla(x,y,V');
+   endif
 
 endfunction;

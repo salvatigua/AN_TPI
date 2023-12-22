@@ -10,10 +10,11 @@
 %  m = numero de nodos sobre el x
 %  n = numero de nodos sobre el y
 %  k_inf = numero de iteraciones k (default:100)
+%  gr: booleano para graficar la solución
 %
 % -----------------------------------------------
 
-function v = EJ2_SA(w=1,h=1,m=20,n=20, k_inf=100, V0=1);
+function v = EJ2_SA(w=1,h=1,m=20,n=20, k_inf=100, V0=1,gr=1);
 
  p = w/(m-1);
  k = h/(n-1);
@@ -33,6 +34,8 @@ function v = EJ2_SA(w=1,h=1,m=20,n=20, k_inf=100, V0=1);
  endfor;
 
  v = (4*V0/pi).*V;
- graficarMalla(x,y,v);
+ if gr==1
+   graficarMalla(x,y,v);
+ endif
 
  endfunction

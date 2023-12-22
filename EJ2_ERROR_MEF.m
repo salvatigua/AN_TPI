@@ -17,7 +17,7 @@ function u = EJ2_ERROR_MEF (w=1, n=10, versiones=0)
    graphics_toolkit('fltk');
 
    % Cálculo de los valores de f y u en los puntos X
-   f_values = EJ2_SA(w,w,n,n,k_inf=100,V0=1);
+   f_values = EJ2_SA(w,w,n,n,k_inf=100,V0=1,gr=0);
    v_values = EJ2_MEF(w,w,n,n, c1=0,c2=1,c3=0,c4=0,tr=0,dat=0, gr=0);
    v_values2 = EJ2_MEF_V2(w,w,n,n, c1=0,c2=1,c3=0,c4=0,tr=0,dat=0, gr=0);
 
