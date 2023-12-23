@@ -1,4 +1,4 @@
-function graficarSolucionPRUEBA(N, T, v)
+function graficarSolucionCirculo(N, T, v)
     % N: nodos
     % T: triangulación
     % v: solución

@@ -13,15 +13,15 @@
 %
 % -----------------------------------------
 
-function u = EJ2_ERROR_MEF (w=1, n=10, versiones=1, guardar=0)
+function u = EJ2_ERROR_MEF (w=1, n=10, versiones=0, guardar=0)
 
    % Cálculo de los valores de f y u en los puntos X
    f_values = EJ2_SA(w,w,n,n,k_inf=100,V0=1,gr=0);
-   v_values = EJ2_MEF(w,w,n,n, c1=0,c2=1,c3=0,c4=0,tr=0,dat=0, gr=0);
-   v_values2 = EJ2_MEF_V2(w,w,n,n, c1=0,c2=1,c3=0,c4=0,tr=0,dat=0, gr=0);
+   v_values = EJ2_MEF(w,n,c1=0,c2=1,c3=0,c4=0,tr=0,dat=0, gr=0);
+   %v_values2 = EJ2_MEF_V2(w,w,n,n, c1=0,c2=1,c3=0,c4=0,tr=0,dat=0, gr=0);
 
    % Cálculo del error
-   error = v_values - f_values
+   error = v_values - f_values;
 
    % Creamos X
    error_long=length(error)-1;
@@ -41,6 +41,8 @@ function u = EJ2_ERROR_MEF (w=1, n=10, versiones=1, guardar=0)
    if guardar==1
     saveas(gcf, 'ej2_error_mef.png');
    endif
+
+    u = error
 
 % Gráfica del error entre versiones
    if versiones==1

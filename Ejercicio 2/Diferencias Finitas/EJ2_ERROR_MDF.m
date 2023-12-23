@@ -38,4 +38,6 @@ function u = EJ2_ERROR_MDF (w=1, n=25, guardar=0)
      saveas(gcf, 'ej2_error_mdf.png');
    endif
 
+   u = error
+
 endfunction

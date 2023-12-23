@@ -1,7 +1,6 @@
-% ---------------- PRUEBA MEF -----------------
+% ------------- EJ2_MEF_Circulo ---------------
 %
-%  VAMOS A USARLO PARA EL ÚLTIMO PUNTO
-% VA A HABER QUE ADAPTARLO
+%  Resuelve punto final del Ej 2 con MEF
 %
 % ---------------- PARÁMETRO ------------------
 %
@@ -10,7 +9,7 @@
 %
 % ---------------------------------------------
 
-function v = pruebaMEF(graficar=0);
+function v = EJ2_MEF_Circulo(tr=0);
 
  [N, T] = obtenerDatos('datos.txt'); % Obtenemos triangulación y nodos
 
@@ -18,7 +17,7 @@ function v = pruebaMEF(graficar=0);
  A = zeros(mn,mn);   b = zeros(mn,1);
  long = 1;
 
-if graficar==1
+if tr==1
   mostrar_triangulacion(N, T, 'malla_y_triangulacion.png')
 end
 
@@ -93,7 +92,7 @@ end
 % -------------------------------------------------------------------
 
 % SOLUCIÓN
- v = A\b
- graficarSolucionPRUEBA(N, T, v);
+ v = A\b;
+ graficarSolucionCirculo(N, T, v);
 
 endfunction;

@@ -5,10 +5,8 @@
 %
 % ---------------- PARAMETROS -----------------
 %
-%  x: longitud
-%  y: altura
-%  m: cantidad de nodos sobre x
-%  n: cantidad de nodos sobre y
+%  x: longitud = altura de la caja
+%  m: cantidad de nodos sobre un eje
 %  ci: i-ésima condición
 %  tr: booleano para graficar triangulación
 %  dat: booleano para guardar datos
@@ -16,23 +14,23 @@
 %
 % ---------------------------------------------
 
-function v = EJ2_MEF(x=1,y=1,m=10,n=10, c1=0,c2=1,c3=0,c4=0, tr=0, dat=0, gr=0);
+function v = EJ2_MEF(x=1,m=20,c1=0,c2=1,c3=0,c4=0, tr=0, dat=0, gr=1);
 
- mn = m*n; %Cantidad total de nodos
+ mn = m*m; %Cantidad total de nodos
 
  A = zeros(mn,mn);
  b = zeros(mn,1);
 
  h = x/(m-1);
- k = y/(n-1);
+ y = x;
  x = [0:h:x];
- y = [0:k:y];
+ y = [0:h:y];
 
  x_aux = x;
  y_aux = y;
 
- T = generarTriangulacion(m,n);
- N = generarNodos(n,m,1);
+ T = generarTriangulacion(m,m);
+ N = generarNodos(m,m,1);
 
  % Guardar datos en archivo de texto
  if dat==1
@@ -75,10 +73,10 @@ endfor;
 
 for i=1:m % puntos de frontera inferior y superior
      j=1; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c1;
-     j=n; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c2; % 1
+     j=m; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c2; % 1
  endfor;
 
- for j=2:n-1 % puntos de frontera iquierda y derecha
+ for j=2:m-1 % puntos de frontera iquierda y derecha
      i=1; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c3;
      i=m; A(i+(j-1)*m,:)=0; A(i+(j-1)*m,i+(j-1)*m)=1; b(i+(j-1)*m)=c4;
  endfor;
