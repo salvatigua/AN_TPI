@@ -5,12 +5,11 @@
 %
 % -------------- PARÁMETROS ---------------
 %
-%  L = longitud en milímetros
-%  diam = diámetro de varilla en milímetros
+%  L_mm = longitud en milímetros
+%  diam_mm = diámetro de varilla en milímetros
 %  n = cantidad de nodos sobre un eje
 %  ta = temperatura ambiente en °C
 %  t0 = temperatura extremo en °C
-%  c1 = condición frontera inferior
 %  k y hp (condiciones físicas)
 %  n = cantidad de nodos
 %

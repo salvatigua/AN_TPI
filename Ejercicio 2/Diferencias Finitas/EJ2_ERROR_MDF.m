@@ -5,9 +5,9 @@
 %
 % --------------- PARAMETROS --------------
 %
-%  w: longitud de lado de caja cuadrada
-%  n: cantidad de nodos
-%  guardar: guardar .png con gráfico
+% w : longitud en metros de un lado de caja
+% n : cantidad de nodos sobre un eje
+% guardar : guardar archivo .png con gráfico
 %
 % -----------------------------------------
 

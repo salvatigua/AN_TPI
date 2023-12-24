@@ -5,9 +5,9 @@
 %
 % --------------- PARAMETROS ---------------
 %
-%  L = longitud (ancho = alto)
-%  n: cantidad de nodos sobre un eje
-%  gr: booleano para graficar la solución
+% L : longitud de un lado de la caja en metros
+% n : cantidad de nodos sobre un eje
+% gr : booleano para graficar la solución
 %
 % ------------------------------------------
 

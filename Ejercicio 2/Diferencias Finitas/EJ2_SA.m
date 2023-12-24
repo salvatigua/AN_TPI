@@ -24,7 +24,7 @@ function v = EJ2_SA(w=1,h=1,m=20,n=20, k_inf=100, V0=1,gr=1);
  y = [0:k:h];     % puntos en el eje y
 
  % Definición función analítica
- f = @(x,y,k) ((sin(((((2*k)-1)*pi).*x)./w)).*(sinh(((((2*k)-1)*pi).*y)./w)))./(((2*k)-1)*(sinh((((2*k)-1)*pi*h)/w)))
+ f = @(x,y,k) ((sin(((((2*k)-1)*pi).*x)./w)).*(sinh(((((2*k)-1)*pi).*y)./w)))./(((2*k)-1)*(sinh((((2*k)-1)*pi*h)/w)));
 
  % Matrices de solución y nodos
  V = zeros(m*n,1);
