@@ -1,4 +1,4 @@
-# RepoAN
+# Análisis Numérico - Trabajo Práctico Integrador
 Acá quedará explicada la estructura del repositorio.
 Cabe destacar que hay veces que se repiten archivos en distintas carpetas, pero es para mantener la compatbilidad.
 
