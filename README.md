@@ -1,6 +1,5 @@
 # Análisis Numérico - Trabajo Práctico Integrador
 Acá quedará explicada la estructura del repositorio.
-Cabe destacar que hay veces que se repiten archivos en distintas carpetas, pero es para mantener la compatbilidad.
 
 ## Ejercicio 1
 Aquí están los cuatro archivos necesarios para resolver el primer ejercicio.
